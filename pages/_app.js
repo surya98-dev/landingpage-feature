@@ -1,13 +1,17 @@
 import "tailwindcss/tailwind.css";
 import { AuthProvider } from "../context/AuthContext";
-import Layout from "../Layouts/Layout";
+import store from "../app/store";
+import { Provider } from "react-redux";
+import AuthLayout from "../Layouts/AuthLayout";
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Provider store={store}>
+        <AuthLayout>
+          <Component {...pageProps} />
+        </AuthLayout>
+      </Provider>
     </AuthProvider>
   );
 }
