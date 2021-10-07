@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { LoginRegisterForm } from "../components";
-import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 import { getAuth, signInWithEmailAndPassword } from "@firebase/auth";
 import app from "../firebase";

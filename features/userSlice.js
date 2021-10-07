@@ -5,6 +5,7 @@ const initialState = {
   currentUser: {
     accessToken: null,
     uid: null,
+    warehouseId: null,
   },
 };
 
@@ -26,8 +27,12 @@ const userSlice = createSlice({
           uid: null,
         });
     },
+    setWarehouseId: (state, { payload }) => {
+      state.currentUser.warehouseId = payload.warehouseId;
+    },
   },
 });
 
-export const { setCurrentUser, removeCurrentUser } = userSlice.actions;
+export const { setCurrentUser, removeCurrentUser, setWarehouseId } =
+  userSlice.actions;
 export default userSlice.reducer;

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Dashboard } from "../components";
-import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
 
 const DashboardPage = () => {
-  const { currentUser } = useAuth();
   const [assetValue, setAssetValue] = useState({});
   const [history, setHistory] = useState();
   const [alert, setAlert] = useState();
@@ -12,7 +11,7 @@ const DashboardPage = () => {
   const [stockOut, setStockOut] = useState({});
   const [audit, setAudit] = useState({});
   const [error, setError] = useState();
-
+  const currentUser = useSelector((state) => state.user.currentUser);
   var today = new Date(),
     date =
       today.getFullYear() +

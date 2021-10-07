@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { LoginRegisterForm } from "../components";
 import { useRouter } from "next/router";
-import { useAuth } from "../context/AuthContext";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -19,7 +18,6 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
-  const { signup } = useAuth();
   const auth = getAuth(app);
   const router = useRouter();
 
@@ -76,7 +74,6 @@ const Register = () => {
         isSignup={true}
         fields={fields}
         handleInputChange={handleInputChange}
-        handleSignin={handleSignin}
         handleSignup={handleSignup}
         loading={loading}
         error={error}

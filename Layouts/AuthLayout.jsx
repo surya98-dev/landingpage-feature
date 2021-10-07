@@ -1,21 +1,29 @@
 import React, { useEffect } from "react";
 import { Navbar } from "../components";
-import { useAuth } from "../context/AuthContext";
 import app from "../firebase";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { removeCurrentUser, setCurrentUser } from "../features/userSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { LoadingPage } from "../components";
+import { setLoading } from "../features/appSlice";
+import Router from "next/router";
 
 const AuthLayout = ({ children }) => {
   const auth = getAuth(app);
   const dispatch = useDispatch();
+  Router.events.on("routeChangeStart", () => {
+    dispatch(setLoading({ loading: true }));
+  });
+  Router.events.on("routeChangeComplete", () => {
+    dispatch(setLoading({ loading: false }));
+  });
 
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const loading = useSelector((state) => state.app.loading);
 
   useEffect(() => {
+    dispatch(setLoading({ loading: true }));
     onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(

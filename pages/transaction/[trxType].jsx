@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { ItemPicker, TransactionMaker } from "../../components";
-import { useAuth } from "../../context/AuthContext";
 import api from "../../services/api";
 import { useRouter } from "next/router";
 import { getWarehouseId } from "../../services/getWarehouseId";
+import { useSelector } from "react-redux";
 
 const TransactionPage = () => {
   const [trx, setTrx] = useState("");
@@ -15,8 +15,7 @@ const TransactionPage = () => {
   const router = useRouter();
   const { trxType } = router.query;
 
-  const { currentUser, warehouseId } = useAuth();
-
+  const currentUser = useSelector((state) => state.user.currentUser);
   const querySwitch = useCallback((input) => {
     switch (input) {
       case "stock-in":
