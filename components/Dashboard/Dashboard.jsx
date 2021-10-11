@@ -9,6 +9,7 @@ const Dashboard = ({
   audit,
   alert,
   history,
+  warehouseId,
 }) => {
   return (
     <div className="font-sans">
@@ -23,7 +24,7 @@ const Dashboard = ({
                 <h4>{infoDate.currentDate.slice(0, 25)}</h4>
               </div>
               <div className="font-light text-white text-sm bg-blue-700 rounded-md px-2 py-1 my-1 w-max">
-                <h4>Warehouse 1</h4>
+                <h4>Warehouse {warehouseId}</h4>
               </div>
             </div>
             <div className="flex flex-1 space-x-4 w-auto ml-5 mt-3">
